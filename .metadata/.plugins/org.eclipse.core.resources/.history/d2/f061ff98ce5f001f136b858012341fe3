@@ -11,14 +11,12 @@ public class Rental {
 	private static int rentalCount = 0;
 	private static int carRentalCount = 0;
 	private static int motorCycleRentalCount = 0;
-	private Customer customer;
 	
 
-	public Rental(String vehicleType,int rentedDays,double totalPrice,Customer customer) {
+	public Rental(String vehicleType,int rentedDays,double totalPrice) {
 		this.vehicleType = vehicleType;
 		this.rentedDays = rentedDays;
 		this.totalPrice = totalPrice;
-		this.customer = customer;
 		rentalCount++;
 		this.rentalId = rentalCount;
 	}

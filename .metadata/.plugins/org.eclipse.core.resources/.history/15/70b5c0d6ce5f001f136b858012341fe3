@@ -3,7 +3,6 @@ package Service;
 import java.io.IOException;
 import Dao.MotorCycleDaoImp;
 import Dao.RentalDaoImp;
-import Model.Customer;
 import Model.MotorCycle;
 import Model.Rental;
 
@@ -18,12 +17,12 @@ public class MotorCycleRentalService extends VehicleRentalService {
 	}
 
 	@Override
-	public void rentInfo(String licenseNumber,int days,Customer customer) throws IOException {
+	public void rentInfo(String licenseNumber,int days) throws IOException {
 		MotorCycle motorCycle = motorcycleDaoImp.getMotorCycleModelByLicenseNumber(licenseNumber);
 		if(motorCycle != null) {
 			double price = motorCycle.getPricePerDay();
 			double totalprice = motorCycleRentalTotalPrice(days,price);
-			Rental rental = new Rental("motorCycle", days, totalprice,customer);
+			Rental rental = new Rental("motorCycle", days, totalprice);
 			rentalDaoImp.addRentalModel(rental);
 			motorcycleDaoImp.deleteMotorCycleModelByLicenseNumber(licenseNumber);
 			System.out.printf("Car rented successfully! Total price is %.2f",totalprice);}
